@@ -1,0 +1,90 @@
+.crop-img{
+  max-height:auto;
+  border: 2px white solid;
+  margin-top: 30px; 
+  margin-left: 100px;
+  
+}
+
+h6
+{
+  text-align: center;
+  margin-left:80px;
+}	
+	
+.Center {
+   width: 100%; 
+   position: center;
+   max-width:750px;
+   left: 0px;
+   height: auto;
+}
+
+.rightHalf {
+   width: 50%;
+   position: absolute;
+   max-width:500px;
+   right: 0px;
+   height: auto;
+}
+h3{
+    text-align: center;
+	margin-right:0px;
+}
+
+#Animals_part{	
+    width: 10.5em;  height: 3em;
+	text-decoration: none;
+	border: none;
+	background-color:#DCDCDC;
+	border: none;
+	font-size:16;
+}
+
+#myImg {
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1;              /* stuck in background */
+    padding-top: 10px; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgb(0,0,0); 
+    background-color: rgba(0,0,0,.9); 
+}
+
+/* Modal Content (image) */
+.modal-content {
+    display: block;
+    width: 100%;
+    max-width: 1000px;
+	border: 3px solid white;
+}
+
+/* The Close Button */
+.close {
+	z-index: -1;
+    color: white; 
+    font-size: 28px;
+	float: right;
+	
+}
+
+
+.close:hover,
+.close:focus {
+    cursor: pointer;
+	color: white;
+}
+
+@media only screen and (max-width: 100px){
+ .modal-content {
+   width: 100%;
+}

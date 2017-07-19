@@ -1,0 +1,164 @@
+<HTML>
+<head>
+ <title>PeaceOfCake</title>
+
+
+<script src="js/jquery-2.1.4.min.js"></script>
+<script src="js/handlebars-v3.0.3.js"></script>
+
+<script src="js/bootstrap.min.js"></script>
+
+<script src="AnimalsData.js"></script>
+
+
+<link href="css/bootstrap_Slate.css" rel="stylesheet">
+<link href="css/gallery.css" rel="stylesheet">
+<link href="http://fonts.googleapis.com/css?family=Tangerine" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body>
+
+    <div id = "container">
+      <div class="row">
+       <div class="col-md-2">
+	    <nav class = "navbar navbar-default">
+		<div class = "header">
+		    <h3>Peace of Cake</h3>
+			</div>
+         <div class = "container-fluid">
+          <div class = "navbar-header">
+           <!-- <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#centent-left">-->
+		    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#content_left" aria-expanded="false" aria-controls="navbar">
+			View Bar 
+			</button>
+		  </div>
+		  <button type="button" id = "Animals_part" class="btn btn-info" data-toggle="collapse" data-target="#content_left" aria-expanded="false" aria-controls="navbar">
+		   <b>Animals</b>
+		  </button>
+            
+            <div id ="content_left" class = "collapse">
+	         <ul class = "nav navbar-nav">
+              <!-- animal list is rendered here -->	
+             </ul>			
+            </div>
+	     </div>
+	    </nav>
+	   </div>
+	        		
+       <div class="col-md-10">
+        <div id="content_right">
+         <!-- animal detail is rendered here -->
+        </div>
+		
+       </div>
+      </div>
+    
+	
+	<!-- The Modal -->
+    <div id="myModal" class="modal">
+	 <div class="modal-dialog" style="width:800">
+	  <class="modal fade" role="dialog">
+       <span class="close">&times;</span>
+        <img class="modal-content" id="img">
+		 <div class="modal-body">
+		 </div>
+       </div>
+	  </div>
+	 </div>
+
+    
+    <script id="category-template" type="text/x-handlebars-template">
+        <ul class="nav nav-pills nav-stacked nav-pills-stacked-example">
+        {{#each animals}}
+            <li><a href="#" class="js-animal-name" data-id="{{name}}">{{name}}</a></li>
+        {{/each}}
+        </ul>
+    </script>
+
+    <script id="animal-detail-template" type="text/x-handlebars-template">
+	  <h2>{{name}} : </h2>
+	 <div class="row">
+       <div class="col-xs-10 col-md-6 col-lg-10" >
+        <center> <img class = "crop-img Center" src="{{image1}}" alt="{{name}}" id= "myImg"></center>
+        <!-- <img class = "crop-img rightHalf" src="{{image2}}" alt="{{name}}"> -->
+		<h6> {{description}} </h6>
+        </div>
+	   </div>
+	   </div>
+     </div>
+    </script>
+	
+	<script id="modal-template" type="text/x-handlebars-template">
+      <div id="imageModal" class="modal fade" role="dialog">
+        <div class="modal-dialog"  style="width:800">
+
+          <div class="modal-content">
+
+            <div class="modal-body">
+              <img  style="width:100%" src="{{image1}}"/>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </script>
+	
+  <script type="text/javascript">
+
+    var source   = $("#category-template").html();
+
+    var template = Handlebars.compile(source);
+
+    var html    = template(animals_data);
+
+    $('#content_left').html(html);
+
+	
+    $('.js-animal-name').on('click', function(e){
+        var animal_name = $(e.target).data('id');
+        for (var i=0;i<animals_data.animals.length;i++){
+            var an_animal = animals_data.animals[i];
+            if (an_animal.name == animal_name){
+                break;
+            }
+        }
+		
+         var source  = $("#animal-detail-template").html();
+
+        
+        var template = Handlebars.compile(source);
+
+      
+        var html = template(an_animal);
+        $('#content_right').html(html);
+		
+      var modal = document.getElementById('myModal');
+
+      // Get the image and insert it inside the modal
+      var img = document.getElementById('myImg');
+      var modalImg = document.getElementById("img");
+	  
+      img.onclick = function(){
+      modal.style.display = "block";
+      modalImg.src = this.src;
+      }
+	  
+     var span = document.getElementsByClassName("close")[0];
+	 
+     span.onclick = function() { 
+     modal.style.display = "none";
+     }
+    
+      //$('.model').click()
+	 // {
+	  //$.model.close();
+	 // model.style.display ="none";
+	 // }
+	 
+    });
+	
+  </script>
+
+</body>
